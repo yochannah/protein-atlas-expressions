@@ -1,9 +1,8 @@
 ## About
-Hack-ey js-specific version of https://github.com/intermine/intermine/blob/beta/bio/webapp/src/org/intermine/bio/web/model/GeneExpressionAtlasTissuesExpressions.java.
+js-specific version of https://github.com/intermine/intermine/blob/beta/bio/webapp/src/org/intermine/bio/web/model/ProteinAtlasExpressions.java
 
 ### Using the project
 See index.html for a basic demo / init instructions.
-
 
 ### Running the project
 
