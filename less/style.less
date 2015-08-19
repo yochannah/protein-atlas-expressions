@@ -1,0 +1,79 @@
+@import '_loader';
+@import '_clearfix';
+
+body {
+  font-family : arial, sans-serif;
+}
+.protein-atlas-displayer {
+   h3 { background-image:url("images/icons/protein-atlas.gif"); background-repeat:no-repeat; background-position:6px 2px;
+    padding-left:28px; line-height:20px; }
+
+   table { float:left; border-spacing:0; border-collapse:collapse; }
+   table td,  table th { padding:2px 10px 2px 4px; }
+   table th { font-size:11px; }
+   table th.sortable { padding-left:8px; cursor:pointer; }
+   div.table table th.sortable { background:url("images/icons/sort-up.gif") no-repeat left; }
+   div.table.byLevel table th.sortable[title="byLevel"],
+   div.table.byOrgan table th.sortable[title="byOrgan"],
+   div.table.byCells table th.sortable[title="byCells"] { background:url("images/icons/sort.gif") no-repeat left; }
+   tr.alt td { background:#F6FCFE; border-top:1px solid #E6F7FE; border-bottom:1px solid #E6F7FE; }
+
+   table div.expressions { border:1px solid #000; border-right:0; display:inline-block; }
+   table div.expression { display:inline-block; width:20px; height:15px; cursor:pointer; float:left; border-right:1px solid #000; }
+   table div.expression span.tissue { display:none; }
+   table div.expression span.tooltip { z-index:5; background:#FFF; border:1px solid #CCC; whitespace:no-wrap; display:inline-block;
+    position:absolute; font-size:11px; padding:1px 2px; -moz-box-shadow:1px 1px 2px #DDD; -webkit-box-shadow:1px 1px 2px #DDD; box-shadow:1px 1px 2px #DDD;
+    line-height:15px; color:#000; }
+
+  .staining .high, .staining .strong { background:#CD3A32; }
+  .ape .high, .ape .strong { background:#2B4A7B; }
+
+  .staining .medium, .staining .moderate { background:#FD9B34; }
+  .ape .medium, .ape .moderate { background:#4B97CE; }
+
+  .staining .weak, .staining .low { background:#FFED8D; }
+  .ape .weak, .ape .low { background:#BFF1FF; }
+
+   .none,  .negative { background:#FFF; }
+
+   table span.level span.value { display:none; }
+
+   div.sidebar { float:right; width:40%; }
+   div.sidebar p strong.uncertain,
+   div.sidebar p strong.low { background:#FFD92C; border:1px solid #DDD; }
+   div.sidebar p strong.supportive,
+   div.sidebar p strong.high,
+   div.sidebar p strong.medium { background:#A9CC30; border:1px solid #DDD; }
+   div.sidebar p.small { font-size:11px; margin-bottom:16px; }
+   div.sidebar p.small a { background:url('images/icons/external_link.png') no-repeat top right; padding-right:10px; }
+
+   div.sidebar div.pane { padding:5px; }
+
+   div.legend { margin-top:10px; }
+   div.legend ul { margin:4px 0 0 0; }
+   div.legend ul li span,  table span.level { display:inline-block; width:20px; height:15px;
+    border:1px solid #000; }
+
+   div.graph ul.header li { display:inline; font-size:11px; }
+
+   div.inactive { display:none; }
+
+  /* resizing */
+  .scale-9 table.graph td,
+  .scale-8 table.graph td,
+  .scale-7 table.graph td,
+  .scale-6 table.graph td { padding:0 !important; }
+
+  .scale-9 table.graph td span.name,
+  .scale-8 table.graph td span.name,
+  .scale-7 table.graph td span.name,
+  .scale-6 table.graph td span.name { font-size:11px; }
+
+  .scale-8 table.graph div.expression,
+  .scale-7 table.graph div.expression,
+  .scale-6 table.graph div.expression { width:11px; }
+
+  .scale-7 div.sidebar { width:30%; }
+
+  .scale-6 div.sidebar { width:20%; }
+}

@@ -1,0 +1,15 @@
+{
+  "user" : {
+    "noResults" : "No interaction results for this query",
+    "noQueryData" : "Problem loading query results"
+  },
+  "dev" : {
+    "noParent" : {
+      "usingDefault" : "ProteinExpressionDisplayer: No parent element specified for ExpressionDisplayer. Using default '#protein-gene-expression-atlas",
+      "noDefault" : "ExpressionDisplayer: No parent element specified, and default '#protein-gene-expression-atlas' not available."
+    },
+    "noQueryData" : "ExpressionDisplayer: No queryOn values supplied!",
+    "noServiceUrl" : "ExpressionDisplayer: No serviceUrl defined, unable to query for interactions.",
+    "badServiceUrl" : "ExpressionDisplayer: bad serviceUrl or bad Query. Please check for typos and check this host is up."
+  }
+}

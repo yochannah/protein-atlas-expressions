@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="dist/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="dist/bundle.js"></script>
+  </head>
+  <body>
+
+    <div id="protein-gene-expression-atlas">
+    </div>
+
+  <script>
+  //This demo shows two different types co-existing on one page
+  var prom = expressions({
+    service : {
+      root: 'http://www.humanmine.org/humanmine/service/',
+      token : "" //optional
+      },
+    queryOn : {
+      "value": "PPARG"
+    }
+  });
+/*  .then(function(){
+    expressions({
+      parentElem : document.getElementById('gene-expression-disease'),
+      service : {
+        root: 'http://www.humanmine.org/humanmine/service/',
+        token : "" //optional
+        },
+      queryOn : {
+      "value": "ADAMTS1"
+      },
+      expressionType : "disease_state" //reqd. Must be either organism_part or disease_state
+    });
+  });*/
+  </script>
+</body>
+</html>
