@@ -21,44 +21,40 @@ var gulp        = require('gulp'),
         standalone : 'expressions'
     };
     var opts = assign({}, watchify.args, customOpts);
-    var b = watchify(browserify(opts));
+    var b;
 
     // add transformations here
     // todo: stripify the prod build to remove console.log
     //  i.e. b.transform(coffeeify);
 
-    gulp.task('js', bundle); // so you can run `gulp js` to build the file
-    b.on('update', bundle); // on any dep update, runs the bundler
-    b.on('log', gutil.log); // output build logs to terminal
-
-
-    /*
-    Compiles less but excludes partials starting with underscore, e.g. _loader.less
-     */
-    gulp.task('less', function() {
-      var ret = gulp.src(['./less/**/*.less', '!./less/**/_*'])
-          .pipe(less())
-          .pipe(minifyCSS())
-          .pipe(gulp.dest('./dist'))
-          .pipe(browserSync.stream())
-          .on('error', gutil.log.bind(gutil, 'Less Error'));
-      return ret
-    });
+    gulp.task('js', bundleOnce); // so you can run `gulp js` to build the file
+    gulp.task('jsdev', bundleDev); // so you can run `gulp js` to build the file
 
     function bundle() {
+      b.on('update', bundle); // on any dep update, runs the bundler
+      b.on('log', gutil.log); // output build logs to terminal
       return b
         .transform(stringify(['.html']))
         .bundle()
         // log errors if they happen
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('bundle.js'))
-        // optional, remove if you don't need to buffer file contents
-        // optional, remove if you dont want sourcemaps
-        // .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
-           // Add transformation tasks to the pipeline here.
+        // Add transformation tasks to the pipeline here.
         .pipe(streamify(uglify()))
         // .pipe(sourcemaps.write('./')) // writes .map file
         .pipe(gulp.dest('./dist'));
+    }
+
+
+    function bundleOnce() {
+      b = browserify(opts);
+      return bundle();
+    }
+
+    function bundleDev(){
+      b = watchify(browserify(opts));
+      //b = browserify(opts);
+      return bundle();
     }
 
 /*
@@ -75,6 +71,17 @@ gulp.task('serve', ['less', 'js'], function() {
     gulp.watch("./*.html").on('change', browserSync.reload);
 });
 
+/*
+Compiles less but excludes partials starting with underscore, e.g. _loader.less
+ */
+gulp.task('less', function() {
+  return gulp.src(['./less/**/*.less', '!./less/**/_*'])
+      .pipe(less())
+      .pipe(minifyCSS())
+      .pipe(gulp.dest('./dist'))
+      .pipe(browserSync.stream());
+});
+
 //These are the tasks most likely to be run by a user
 
 /*
@@ -82,7 +89,7 @@ starts server for dev use
  */
 gulp.task('dev', [
   'serve', //includes css
-  'js'
+  'jsdev'
 ], function() {
   gutil.log(gutil.colors.yellow('| =================================================='));
   gutil.log(gutil.colors.yellow('| Congrats, it looks like everything is working!'));
