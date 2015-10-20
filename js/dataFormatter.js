@@ -33,7 +33,31 @@ var proExData = function(){
         tableData[organName].cells = organ.sort(sortByLevel);
       }
     }
-    return tableData;
+    return tableDataToArray(tableData);
+  },
+  tableDataToArray = function(tableObj){
+    var arr = [];
+    //make Array
+    for (var organName in tableObj) {
+      console.log(tableObj);
+      if (tableObj.hasOwnProperty(organName)) {
+        organ = tableObj[organName];
+        organ.name = organName;
+        arr.push(organ);
+      }
+    }
+    //Sort the Array by Cell Type
+    return arr.sort(sortByCellType);
+  },
+  sortByCellType = function(a, b){
+    console.log(a,b);
+    if(a.cells.length > b.cells.length) {
+      return -1;
+    } else if (b.cells.length > a.cells.length) {
+      return 1;
+    } else {
+      return 0;
+    }
   },
   sortByLevel = function(a,b){
     var order = ["High", "Medium", "Low", "Not detected"];
