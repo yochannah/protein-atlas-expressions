@@ -16,7 +16,6 @@ var proExData = function(){
       gene = data[i];
       for (var j = 0; j < gene.proteinAtlasExpression.length; j++) {
         expr = gene.proteinAtlasExpression[j];
-        console.log(expr.level, expr);
         organ = expr.tissue.tissueGroup.name;
         if(!sortedByOrgan[organ]) {
           sortedByOrgan[organ] = [];
@@ -28,8 +27,23 @@ var proExData = function(){
         pushIfNotPresent(tableData[organ].cells, getCellType(expr));
       }
     }
-    console.log('all the data, sorted by organ:',sortedByOrgan);
+    for (var organName in tableData) {
+      if (tableData.hasOwnProperty(organName)) {
+        organ = tableData[organName].cells;
+        tableData[organName].cells = organ.sort(sortByLevel);
+      }
+    }
     return tableData;
+  },
+  sortByLevel = function(a,b){
+    var order = ["High", "Medium", "Low", "Not detected"];
+    if(order.indexOf(a.level) < order.indexOf(b.level)) {
+      return -1;
+    } else if (order.indexOf(a.level) > order.indexOf(b.level)) {
+      return 1;
+    } else {
+      return 0;
+    }
   },
   pushIfNotPresent = function (arr,val){
     var present = false;
@@ -44,7 +58,6 @@ var proExData = function(){
     }
   },
   getCellType = function(expr) {
-    console.log(expr.level);
     return {
       name : expr.tissue.name + " (" + expr.cellType + ")",
       level : expr.level

@@ -67,13 +67,6 @@ var ui = function(settings) {
         );
       });
 
-      //table "sorting" --%>
-      jQuery(settings.parentElem).find("table th.sortable").click(function() {
-        var order = jQuery(this).attr('title');
-        jQuery(settings.parentElem).find("div.table.active").removeClass('active').addClass('inactive');
-        jQuery(settings.parentElem).find("div.table."+order).removeClass('inactive').addClass('active');
-      });
-
       //determine the viewport size and 'resize' the chart --%>
       function sizeChart() {
         debugger;
