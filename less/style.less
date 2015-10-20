@@ -102,9 +102,11 @@ margin: 1px;
   }
 }
 
-.table tr:nth-child(even) {background-color:@bgColor}
-td {margin:0;}
-
+.table table {
+  border-spacing:0;
+  tr:nth-child(even) {background-color:@bgColor}
+  td {margin:0;border-spacing:0;}
+}
 
 .High {
   background-color:@certaintyColor;

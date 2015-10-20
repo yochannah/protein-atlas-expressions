@@ -31,6 +31,7 @@ var ui = function(settings) {
 
       settings.parentElem.innerHTML = template;
       var table = "<table>";
+      table += "<thead><tr><th>Overall</th><th>Organ</th><th>Cell Types</th><th>Antibody Staining</th></tr></thead>";
 
       for (var organ in data) {
         table += createRow({organ: organ, data : data[organ].cells});
