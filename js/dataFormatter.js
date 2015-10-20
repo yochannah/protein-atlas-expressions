@@ -39,7 +39,6 @@ var proExData = function(){
     var arr = [];
     //make Array
     for (var organName in tableObj) {
-      console.log(tableObj);
       if (tableObj.hasOwnProperty(organName)) {
         organ = tableObj[organName];
         organ.name = organName;
@@ -50,7 +49,6 @@ var proExData = function(){
     return arr.sort(sortByCellType);
   },
   sortByCellType = function(a, b){
-    console.log(a,b);
     if(a.cells.length > b.cells.length) {
       return -1;
     } else if (b.cells.length > a.cells.length) {

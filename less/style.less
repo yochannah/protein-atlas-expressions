@@ -4,7 +4,7 @@
 body {
   font-family : arial, sans-serif;
 }
-#protein-atlas-displayer {
+.protein-atlas-displayer {
    table { float:left; border-spacing:0; border-collapse:collapse; }
    table td,  table th { padding:2px 10px 2px 4px; }
    table th { font-size:11px; }
@@ -67,67 +67,67 @@ body {
   .scale-7 div.sidebar { width:30%; }
 
   .scale-6 div.sidebar { width:20%; }
-}
 
-@bgColor : #f0f0f0;
-@certaintyColor: #2B4A7B;
-@boxSize: 17px;
+  @bgColor : #f0f0f0;
+  @certaintyColor: #2B4A7B;
+  @boxSize: 17px;
 
-.expression {
-width:@boxSize;
-height:@boxSize;
-display:block;
-float:left;
-border:solid 1px #ddd;
-margin: 1px;
-z-index:9;
-}
+  .expression {
+  width:@boxSize;
+  height:@boxSize;
+  display:block;
+  float:left;
+  border:solid 1px #ddd;
+  margin: 1px;
+  z-index:9;
+  }
 
-.sidebar {
-  background-color:@bgColor;
-  .level {
-    .cf;
-      li {
-      list-style-type:none;
-      clear:left;
-      float:left;
+  .sidebar {
+    background-color:@bgColor;
+    .level {
+      .cf;
+        li {
+        list-style-type:none;
+        clear:left;
+        float:left;
+      }
     }
   }
-}
 
-.table table {
-  border-spacing:0;
-  tr:nth-child(even) {background-color:@bgColor}
-  td {margin:0;border-spacing:0;}
-  width:69%;
-}
+  .table table {
+    border-spacing:0;
+    tr:nth-child(even) {background-color:@bgColor}
+    td {margin:0;border-spacing:0;}
+    width:69%;
+  }
 
-.High {
-  background-color:@certaintyColor;
-  border-color:@certaintyColor;
-}
-.Medium {
-  background-color:lighten(@certaintyColor, 25%);
-  border-color:lighten(@certaintyColor, 25%);
-}
+  .High {
+    background-color:@certaintyColor;
+    border-color:@certaintyColor;
+  }
+  .Medium {
+    background-color:lighten(@certaintyColor, 25%);
+    border-color:lighten(@certaintyColor, 25%);
+  }
 
-.Low {
-  background-color:lighten(@certaintyColor, 50%);
-  border-color:lighten(@certaintyColor, 50%);
-}
+  .Low {
+    background-color:lighten(@certaintyColor, 50%);
+    border-color:lighten(@certaintyColor, 50%);
+  }
 
-.Not.detected {
-  background-color:lighten(@certaintyColor, 100%);
-}
+  .Not.detected {
+    background-color:lighten(@certaintyColor, 100%);
+  }
 
-.tooltip {
-  background-color:#fff;
-  color:#000;
-  padding:1em;
-  border:solid 1px @bgColor;
-  box-shadow:3px 3px 3px rgba(0,0,0,0.3);
-  display:block;
-  position:relative;
-  width:320px;
-  z-index:10;
+  .tooltip {
+    background-color:#fff;
+    color:#000;
+    padding:1em;
+    border:solid 1px @bgColor;
+    box-shadow:3px 3px 3px rgba(0,0,0,0.3);
+    display:block;
+    position:relative;
+    width:320px;
+    z-index:10;
+  }
 }
