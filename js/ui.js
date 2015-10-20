@@ -8,7 +8,7 @@ var ui = function(settings) {
 
   function createRow(row) {
     var expressionSet = makeExpressionSet(row.data);
-    return "<tr><td class='overall'></td><td class='organ'>" + row.organ
+    return "<tr><td class='organ'>" + row.organ
     + "</td><td class='count'>" + row.data.length
     + "</td><td class='staining'>" + expressionSet
     + "</td>"
@@ -31,7 +31,7 @@ var ui = function(settings) {
 
       settings.parentElem.innerHTML = template;
       var table = "<table>";
-      table += "<thead><tr><th>Overall</th><th>Organ</th><th>Cell Types</th><th>Antibody Staining</th></tr></thead>";
+      table += "<thead><tr><th>Organ</th><th>Cell Types</th><th>Antibody Staining</th></tr></thead>";
 
       for (var organ in data) {
         table += createRow({organ: organ, data : data[organ].cells});
@@ -42,17 +42,23 @@ var ui = function(settings) {
       jQuery(settings.parentElem).find('.table.byOrgan').html(table);
 
       //hovering on an organ tissue level will merge the contained tissue expressions of the same level and show a tooltip --%>
-      jQuery(settings.parentElem).find("div.expression").each(function() {
+      jQuery(settings.parentElem).find("div.expression").each(function() {console.log('yep', this);
         var level = jQuery(this).attr('class').replace('expression', '').trim();
+        //fix for 'not detected' level"
+        if(level.indexOf(" ") >= 0) {
+          level = level.split(" ").join(".");
+        }
         var that = this;
         jQuery(this).hover(
               function() {
+                console.log('eh?');
                   jQuery('<span/>', {
                       'class': 'tooltip',
                       'html': function() {
                         var tooltip = new Array();
                         jQuery(that).parent().find("div.expression."+level).each(function() {
-                            tooltip.push(jQuery(this).find('span.tissue').text());
+                            tooltip.push(jQuery(this).find('.tissue').attr('alt'));
+                            console.log('ooh..', tooltip);
                         });
                         return tooltip.join('<br/>');
                       },

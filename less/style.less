@@ -4,7 +4,7 @@
 body {
   font-family : arial, sans-serif;
 }
-.protein-atlas-displayer {
+#protein-atlas-displayer {
    h3 { background-image:url("images/icons/protein-atlas.gif"); background-repeat:no-repeat; background-position:6px 2px;
     padding-left:28px; line-height:20px; }
 
@@ -19,14 +19,14 @@ body {
    tr.alt td { background:#F6FCFE; border-top:1px solid #E6F7FE; border-bottom:1px solid #E6F7FE; }
 
    table div.expressions { border:1px solid #000; border-right:0; display:inline-block; }
-   table div.expression { display:inline-block; width:20px; height:15px; cursor:pointer; float:left; border-right:1px solid #000; }
+   table div.expression { display:inline-block; cursor:pointer; float:left; }
    table div.expression span.tissue { display:none; }
    table div.expression span.tooltip { z-index:5; background:#FFF; border:1px solid #CCC; whitespace:no-wrap; display:inline-block;
     position:absolute; font-size:11px; padding:1px 2px; -moz-box-shadow:1px 1px 2px #DDD; -webkit-box-shadow:1px 1px 2px #DDD; box-shadow:1px 1px 2px #DDD;
     line-height:15px; color:#000; }
 
   .staining .high, .staining .strong { background:#CD3A32; }
-  .ape .high, .ape .strong { background:#2B4A7B; }
+  .ape .high, .ape .strong { background:@certaintyColor; }
 
   .staining .medium, .staining .moderate { background:#FD9B34; }
   .ape .medium, .ape .moderate { background:#4B97CE; }
@@ -45,14 +45,12 @@ body {
    div.sidebar p strong.high,
    div.sidebar p strong.medium { background:#A9CC30; border:1px solid #DDD; }
    div.sidebar p.small { font-size:11px; margin-bottom:16px; }
-   div.sidebar p.small a { background:url('images/icons/external_link.png') no-repeat top right; padding-right:10px; }
 
    div.sidebar div.pane { padding:5px; }
 
    div.legend { margin-top:10px; }
    div.legend ul { margin:4px 0 0 0; }
-   div.legend ul li span,  table span.level { display:inline-block; width:20px; height:15px;
-    border:1px solid #000; }
+   div.legend ul li span,  table span.level { display:inline-block; }
 
    div.graph ul.header li { display:inline; font-size:11px; }
 
@@ -88,6 +86,7 @@ display:block;
 float:left;
 border:solid 1px #ddd;
 margin: 1px;
+z-index:9;
 }
 
 .sidebar {
@@ -124,4 +123,16 @@ margin: 1px;
 
 .Not.detected {
   background-color:lighten(@certaintyColor, 100%);
+}
+
+.tooltip {
+  background-color:#fff;
+  color:#000;
+  padding:1em;
+  border:solid 1px @bgColor;
+  box-shadow:3px 3px 3px rgba(0,0,0,0.3);
+  display:block;
+  position:relative;
+  width:320px;
+  z-index:10;
 }
