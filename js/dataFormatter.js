@@ -16,6 +16,7 @@ var proExData = function(){
       gene = data[i];
       for (var j = 0; j < gene.proteinAtlasExpression.length; j++) {
         expr = gene.proteinAtlasExpression[j];
+        console.log(expr.level, expr);
         organ = expr.tissue.tissueGroup.name;
         if(!sortedByOrgan[organ]) {
           sortedByOrgan[organ] = [];
@@ -43,6 +44,7 @@ var proExData = function(){
     }
   },
   getCellType = function(expr) {
+    console.log(expr.level);
     return {
       name : expr.tissue.name + " (" + expr.cellType + ")",
       level : expr.level

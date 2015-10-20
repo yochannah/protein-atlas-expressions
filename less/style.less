@@ -77,3 +77,49 @@ body {
 
   .scale-6 div.sidebar { width:20%; }
 }
+
+@bgColor : #f0f0f0;
+@certaintyColor: #2B4A7B;
+
+.expression {
+width:20px;
+height:20px;
+display:block;
+float:left;
+border:solid 1px #ddd;
+margin: 1px;
+}
+
+.sidebar {
+  background-color:@bgColor;
+  .level {
+    .cf;
+      li {
+      list-style-type:none;
+      clear:left;
+      float:left;
+    }
+  }
+}
+
+.table tr:nth-child(even) {background-color:@bgColor}
+td {margin:0;}
+
+
+.High {
+  background-color:@certaintyColor;
+  border-color:@certaintyColor;
+}
+.Medium {
+  background-color:lighten(@certaintyColor, 25%);
+  border-color:lighten(@certaintyColor, 25%);
+}
+
+.Low {
+  background-color:lighten(@certaintyColor, 50%);
+  border-color:lighten(@certaintyColor, 50%);
+}
+
+.Not.detected {
+  background-color:lighten(@certaintyColor, 100%);
+}

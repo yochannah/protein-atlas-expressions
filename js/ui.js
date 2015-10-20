@@ -6,8 +6,40 @@ jQuery          = require('jquery');
 var ui = function(settings) {
   this.settings = settings;
 
+  function createRow(row) {
+    var expressionSet = makeExpressionSet(row.data);
+    return "<tr><td class='overall'></td><td class='organ'>" + row.organ
+    + "</td><td class='count'>" + row.data.length
+    + "</td><td class='staining'>" + expressionSet
+    + "</td>"
+    + "</tr>";
+  }
+
+  function makeExpressionSet(arr){
+    var ret = "";
+    for (var i = 0; i < arr.length; i++) {
+      ret += "<div class='expression " + arr[i].level +"'>";
+      ret += "<span class='tissue' alt='" + arr[i].name + "'></span></div>";
+    }
+    return ret;
+  }
+
   var init = function(data) {
+
     (function() {
+
+
+      settings.parentElem.innerHTML = template;
+      var table = "<table>";
+
+      for (var organ in data) {
+        table += createRow({organ: organ, data : data[organ].cells});
+      }
+
+      table += "</table>";
+
+      jQuery(settings.parentElem).find('.table.byOrgan').html(table);
+
       //hovering on an organ tissue level will merge the contained tissue expressions of the same level and show a tooltip --%>
       jQuery(settings.parentElem).find("div.expression").each(function() {
         var level = jQuery(this).attr('class').replace('expression', '').trim();
@@ -43,6 +75,7 @@ var ui = function(settings) {
 
       //determine the viewport size and 'resize' the chart --%>
       function sizeChart() {
+        debugger;
         var width = jQuery(window).width();
         var ratio = Math.round(width / 160);
         if (ratio < 5) {
@@ -50,10 +83,10 @@ var ui = function(settings) {
         } else if (ratio > 10) {
             ratio = 10;
         }
-        if (jQuery("#protein-atlas-displayer").hasClass('ape')) {
-            jQuery("#protein-atlas-displayer").attr('class', 'ape scale-' + ratio);
+        if (jQuery(settings.parentElem).hasClass('ape')) {
+            jQuery(settings.parentElem).attr('class', 'ape scale-' + ratio);
         } else {
-            jQuery("#protein-atlas-displayer").attr('class', 'staining scale-' + ratio);
+            jQuery(settings.parentElem).attr('class', 'staining scale-' + ratio);
         }
       };
       sizeChart();
@@ -94,7 +127,8 @@ var ui = function(settings) {
       });
     })();
 
-  };
+  }
+
 
     return {
       init: init

@@ -1,8 +1,6 @@
 <body>
   <div id="protein-atlas-displayer" class="${expressionType.clazz}">
 
-  <c:choose>
-  <c:when test="${expressions.reliability != null}">
   <h3 class="goog">Protein Atlas Tissue Expression</h3>
 
     <div class="sidebar">
@@ -14,15 +12,14 @@
   	  </div>
 
   	  <div class="pane key">
-  		<p>Reliability: <strong class="${fn:toLowerCase(expressions.reliability)}">${expressions.reliability}</strong> (${expressionType.text})</p>
 
   	    <div class="legend">
   	      <strong>Level of antibody staining</strong>*
   	      <ul class="level">
-  	        <li><span class="high"></span> High</li>
-  	        <li><span class="medium"></span> Medium</li>
-  	        <li><span class="low"></span> Low</li>
-  	        <li><span class="none"></span> None</li>
+  	        <li><span class="expression High"></span> High</li>
+  	        <li><span class="Medium expression "></span> Medium</li>
+  	        <li><span class="Low expression"></span> Low</li>
+  	        <li><span class="Not detected expression"></span> None</li>
   	      </ul>
   	    </div>
   	  </div>
@@ -33,30 +30,29 @@
   	      <strong>About &amp; Source</strong>
   	      <p class="small">This chart represents a normal tissue &amp; organ summary of the antibody staining or the protein expression in a number of
   	      human tissues and organs. A description of the assay and annotation can be found <a target="new" href="http://www.proteinatlas.org/about/assays+annotation#ih">here</a>.</p>
-  	      <a target="new" href="http://www.proteinatlas.org/"><img src="model/images/protein-atlas.gif" alt="Human Protein Atlas" /></a>
   	  </div>
       </div>
     </div>
 
     <div class="table byOrgan active">
-      <c:set var="tableRows" value="${expressions.byOrgan}" />
+      <!--c:set var="tableRows" value="${expressions.byOrgan}" />
       <tiles:insert page="proteinAtlasDisplayerTable.jsp">
         <tiles:put name="rows" beanName="tableRows" />
-      </tiles:insert>
+      </tiles:insert-->
     </div>
 
-    <div class="table byCells inactive ${expressionType.clazz}">
-      <c:set var="tableRows" value="${expressions.byCells}" />
+    <div class="table byCells inactive">
+      <!--c:set var="tableRows" value="${expressions.byCells}" />
       <tiles:insert page="proteinAtlasDisplayerTable.jsp">
         <tiles:put name="rows" beanName="tableRows" />
-      </tiles:insert>
+      </tiles:insert-->
     </div>
 
-    <div class="table byLevel inactive ${expressionType.clazz}">
-      <c:set var="tableRows" value="${expressions.byLevel}" />
+    <div class="table byLevel inactive">
+      <!--c:set var="tableRows" value="${expressions.byLevel}" />
       <tiles:insert page="proteinAtlasDisplayerTable.jsp">
         <tiles:put name="rows" beanName="tableRows" />
-      </tiles:insert>
+      </tiles:insert-->
     </div>
 
     <div style="clear:both;"></div>

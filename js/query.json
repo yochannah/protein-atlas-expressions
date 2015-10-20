@@ -1,57 +1,26 @@
-{
-  "name": "ExpressionInteractions_genes",
-  "title": "Expression + interactions -> genes",
-  "description": "Show genes expressed in a specified tissue that interact with a specified gene.  Expression data is from Protein Atlas, interaction data from BioGrid and Intact.",
-  "constraintLogic": "A and B and C and D",
+  {
+  "description": "For a given human tissue returns a list of Genes which are localised in the tissue. Optional filters are expression level and experimental confidence.",
   "from": "Gene",
   "select": [
     "symbol",
     "primaryIdentifier",
     "proteinAtlasExpression.tissue.name",
-    "proteinAtlasExpression.tissue.tissueGroup.name",
-    "proteinAtlasExpression.expressionType",
-    "proteinAtlasExpression.level",
-    "proteinAtlasExpression.reliability",
+    "proteinAtlasExpression.tissue.tissueGroup.name",    "proteinAtlasExpression.expressionType",
     "proteinAtlasExpression.cellType",
-    "interactions.gene2.symbol",
-    "interactions.gene2.primaryIdentifier"
+    "proteinAtlasExpression.reliability",
+    "proteinAtlasExpression.level"
   ],
-  "orderBy": [{
-    "path": "symbol",
-    "direction": "ASC"
-  }],
-  "where": [{
-    "path": "proteinAtlasExpression.level",
-    "op": "ONE OF",
-    "values": [
-      "High",
-      "Moderate",
-      "Strong"
-    ],
-    "code": "B",
-    "editable": true,
-    "switched": "LOCKED",
-    "switchable": false
-  }, {
-    "path": "proteinAtlasExpression.reliability",
-    "op": "ONE OF",
-    "values": [
-      "High",
-      "Medium",
-      "Supportive"
-    ],
-    "code": "C",
-    "editable": true,
-    "switched": "LOCKED",
-    "switchable": false
-  }, {
-    "path": "interactions.gene2",
-    "op": "LOOKUP",
-    "value": "pparg",
-    "extraValue": "",
-    "code": "D",
-    "editable": true,
-    "switched": "LOCKED",
-    "switchable": false
-  }]
-};
+  "orderBy": [
+    {
+      "path": "symbol",
+      "direction": "ASC"
+    }
+  ],
+  "where": [
+    {
+      "path": "symbol",
+      "op": "=",
+      "code": "A"
+    }
+  ]
+}
