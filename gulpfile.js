@@ -18,7 +18,7 @@ var gulp        = require('gulp'),
     var customOpts = {
       entries: ['./js/main.js'],
         debug: true,
-        standalone : 'expressions'
+        standalone : 'proteinatlasexpression'
     };
     var opts = assign({}, watchify.args, customOpts);
     var b;
